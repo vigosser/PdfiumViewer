@@ -714,8 +714,11 @@ namespace PdfiumViewer
 
             [DllImport("pdfium.dll", EntryPoint = "FPDF_ImportPages", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool FPDF_ImportPages(IntPtr destDoc, IntPtr srcDoc, [MarshalAs(UnmanagedType.LPStr)]string pageRange, int index);
-
+            
             [DllImport("pdfium.dll", EntryPoint = "FPDF_SaveAsCopy", CallingConvention = CallingConvention.Cdecl)]
+            //this DLLImport do not work, when compile selections set to x86 in Vs2015
+            //↓ this would work.
+            //[DllImport("pdfium.dll")]                      
             public static extern bool FPDF_SaveAsCopy(IntPtr doc,
                 [MarshalAs(UnmanagedType.LPStruct)]FPDF_FILEWRITE writer,
                 [MarshalAs(UnmanagedType.I4)]FPDF_SAVE_FLAGS flag);
